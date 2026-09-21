@@ -1,2 +1,7 @@
-# mosaic-relay
-A server-driven UI foundation for Android built with Kotlin, Compose, Circuit, GraphQL, Hilt, and Paparazzi.
+# MosaicRelay
+
+A versioned server-driven UI foundation for Android.
+
+**Codename: Kankurō**
+
+> The server pulls the strings. The client defines what those strings are allowed to control.
