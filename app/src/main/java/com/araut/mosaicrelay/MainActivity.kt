@@ -3,31 +3,38 @@ package com.araut.mosaicrelay
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.araut.mosaicrelay.sdui.renderer.SduiRenderer
-import com.araut.mosaicrelay.sdui.sample.SamplePages
+import com.araut.mosaicrelay.sdui.presenter.HomePresenter
+import com.araut.mosaicrelay.sdui.screen.HomeScreen
+import com.araut.mosaicrelay.sdui.ui.HomeUi
 import com.araut.mosaicrelay.ui.theme.MosaicRelayTheme
+import com.slack.circuit.foundation.CircuitContent
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         setContent {
             MosaicRelayTheme {
+                val homePresenter = remember {
+                    HomePresenter()
+                }
+
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    containerColor = MaterialTheme.colorScheme.background,
                 ) { innerPadding ->
-                    SduiRenderer(
-                        page = SamplePages.home,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding),
+                    CircuitContent(
+                        screen = HomeScreen,
+                        presenter = homePresenter,
+                        ui = HomeUi,
+                        modifier = Modifier.padding(innerPadding),
                     )
                 }
             }
