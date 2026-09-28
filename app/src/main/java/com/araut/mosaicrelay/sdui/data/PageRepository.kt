@@ -13,6 +13,7 @@ data class PageLoadResult(
 )
 
 enum class PageSource {
+    REMOTE,
     ASSET,
     FALLBACK,
 }
