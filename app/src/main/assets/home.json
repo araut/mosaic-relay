@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "pageId": "home",
+  "components": [
+    {
+      "type": "hero",
+      "id": "home-hero",
+      "title": "Mosaic Relay",
+      "subtitle": "The server pulls the strings. The client controls how they move."
+    },
+    {
+      "type": "contentRow",
+      "id": "continue-watching",
+      "title": "Continue Watching",
+      "items": [
+        {
+          "id": "item-1",
+          "title": "The Hidden Village",
+          "subtitle": "Episode 4"
+        },
+        {
+          "id": "item-2",
+          "title": "Beyond the Relay",
+          "subtitle": "Episode 7"
+        },
+        {
+          "id": "item-3",
+          "title": "Framework Foundations",
+          "subtitle": "New episode"
+        }
+      ]
+    },
+    {
+      "type": "textCallout",
+      "id": "architecture-message",
+      "text": "This interface was assembled from a versioned JSON page definition."
+    },
+    {
+      "type": "experimentalBanner",
+      "id": "future-component"
+    }
+  ]
+}
