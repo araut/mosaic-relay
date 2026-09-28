@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import com.araut.mosaicrelay.sdui.data.AssetPageRepository
 import com.araut.mosaicrelay.sdui.presenter.HomePresenter
 import com.araut.mosaicrelay.sdui.screen.HomeScreen
 import com.araut.mosaicrelay.sdui.ui.HomeUi
@@ -23,8 +24,19 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MosaicRelayTheme {
-                val homePresenter = remember {
-                    HomePresenter()
+                val repository = remember {
+                    AssetPageRepository(
+                        readAsset = { filename ->
+                            applicationContext.assets
+                                .open(filename)
+                                .bufferedReader()
+                                .use { reader -> reader.readText() }
+                        },
+                    )
+                }
+
+                val presenter = remember(repository) {
+                    HomePresenter(repository)
                 }
 
                 Scaffold(
@@ -32,7 +44,7 @@ class MainActivity : ComponentActivity() {
                 ) { innerPadding ->
                     CircuitContent(
                         screen = HomeScreen,
-                        presenter = homePresenter,
+                        presenter = presenter,
                         ui = HomeUi,
                         modifier = Modifier.padding(innerPadding),
                     )
